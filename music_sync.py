@@ -103,7 +103,7 @@ class Sync:
                                     local_path=entry,
                                     remote_path=self.convert_path_local_to_remote(entry),
                                 )
-                        elif entry.suffix in {'.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG'}:
+                        elif entry.suffix in {'.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG'} and entry.stem == 'cover':
                             images.append(File(
                                 local_path=entry,
                                 remote_path=self.convert_path_local_to_remote(entry),
