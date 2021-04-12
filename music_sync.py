@@ -152,6 +152,13 @@ class Sync:
         self.local_collection = list(self.scan_local(self.LOCAL_ROOT, filter_set))
 
     def sync(self):
+        if not self.args.dry_run:
+            print("Removing thumbnails")
+            subprocess.run(
+                ('adb', 'shell', 'rm -rf {}'.format(Path('/')/self.REMOTE_ROOT.relative_to(self.MOUNT_DIR)/'.thumbnails')),
+                check=True,
+            )
+
         print("Scanning remote")
         remote_file_mtimes = dict(self.scan_remote(self.MOUNT_DIR, self.REMOTE_ROOT.relative_to(self.MOUNT_DIR)))
 
